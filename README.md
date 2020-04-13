@@ -51,8 +51,8 @@ pipenv install
 
 ### 4-Start the server
 
-The following command will start sharing your terminal history on port 80.
+The following command will start sharing your terminal history on port 80. To start the server, you will need admin rights (sudo).
 
 ```bash
-python server.py
+sudo python server.py
 ```
