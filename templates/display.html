@@ -1,0 +1,84 @@
+<html>
+
+<head>
+    <title>termshare - command history</title>
+    <meta http-equiv="refresh" content="30">
+
+    <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"
+        integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
+
+    <script type="text/javascript" charset="utf-8">
+        var socket = io();
+        socket.on('connect', function () {
+            socket.emit('connect_event', {
+                data: 'I\'m connected!'
+            });
+            alert('connected')
+        });
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+    <script>
+        function copyToClipboard(element) {
+            var $temp = $("<input>");
+            $("body").append($temp);
+            $temp.val($(element).html()).select(); //Note the use of html() rather than text()
+            document.execCommand("copy");
+            $temp.remove();
+        }
+    </script>
+
+</head>
+
+<body>
+
+    <style type="text/css">
+        th:tr {
+            color: blue;
+        }
+
+        tr:nth-of-type(2n) {
+            border: 1px solid black;
+            background-color: rgba(150, 150, 150, 0.5);
+        }
+
+        td {
+            padding: 8px 8px;
+            border: 1px solid black;
+        }
+    </style>
+
+    <body>
+
+        <table style="margin-left: 20px;">
+            <!-- Table headers -->
+            <th>
+                <tr style="color: green; ">
+                    <td>id</td>
+                    <td>command</td>
+                    <td></td>
+                </tr>
+            </th>
+
+            <!-- For loop logic of jinja template -->
+            {%for i in range(0, size)%}
+
+            <!-- table rows -->
+            <tr>
+                <td>{{i}}</td>
+                <td id="{{i}}">{{text[i]}}</td>
+                <td>
+                    <button onclick="copyToClipboard('#{{i}}')">Copy</button>
+                </td>
+
+                {%endfor%}
+
+            </tr>
+
+        </table>
+
+
+    </body>
+
+</html>
