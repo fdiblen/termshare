@@ -2,12 +2,14 @@
 #!/usr/bin/python
 
 import time
+from pathlib import Path
+
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
-
+user_home = str(Path.home())
 
 class FileWatch(FileSystemEventHandler):
-    def __init__(self, filename='/home/user/.bash_history', modfun=None):
+    def __init__(self, filename=user_home+'/.bash_history', modfun=None):
         self.filename = filename
         self.modfun = modfun
 
@@ -25,7 +27,7 @@ def test():
 if __name__ == "__main__":
     event_handler = FileWatch(modfun=test)
     observer = Observer()
-    observer.schedule(event_handler, path='/home/user/', recursive=False)
+    observer.schedule(event_handler, path=user_home, recursive=False)
     observer.start()
 
     try:

@@ -1,4 +1,5 @@
 #!/usr/bin/python
+from pathlib import Path
 
 from flask import Flask, render_template
 from flask_socketio import SocketIO
@@ -6,10 +7,10 @@ from flask_socketio import SocketIO
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app)
-
+user_home = str(Path.home())
 
 @app.route('/')
-def content(histfile='/home/arch/.bash_history'):
+def content(histfile=user_home+'/.bash_history'):
     with open(histfile, "r") as f:
         content = f.readlines()
 
