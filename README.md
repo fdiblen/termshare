@@ -16,6 +16,7 @@ git clone https://github.com/fdiblen/termshare.git
 Add the following lines to your `.bashrc`
 
 ```shell
+export HISTTIMEFORMAT="%s (%H:%M:%S):"
 export HISTSIZE=1000000
 export HISTFILESIZE=1000000
 PROMPT_COMMAND='history -a'

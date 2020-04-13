@@ -13,7 +13,6 @@
             socket.emit('connect_event', {
                 data: 'I\'m connected!'
             });
-            alert('connected')
         });
     </script>
 
@@ -56,6 +55,7 @@
             <th>
                 <tr style="color: green; ">
                     <td>id</td>
+                    <td>time</td>
                     <td>command</td>
                     <td></td>
                 </tr>
@@ -67,7 +67,8 @@
             <!-- table rows -->
             <tr>
                 <td>{{i}}</td>
-                <td id="{{i}}">{{text[i]}}</td>
+                <td>{{text[i][0]}}</td>
+                <td id="{{i}}">{{text[i][1]}}</td>
                 <td>
                     <button onclick="copyToClipboard('#{{i}}')">Copy</button>
                 </td>
